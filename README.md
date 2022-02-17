@@ -23,7 +23,7 @@ eida SMART is a web application, the goal was to develop an application which wi
 
 ## Authors
 
-Our code squad : Cyril Sampedro, Emina Talbi and Zineb Chebouba.
+Sampedro Cyril (aka Alien)
 
 ## Licensing
 
