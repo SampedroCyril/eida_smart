@@ -27,4 +27,4 @@ Our code squad : Cyril Sampedro, Emina Talbi and Zineb Chebouba.
 
 ## Licensing
 
-This project belongs to the eida group.
+This project belongs to the eida group (fictiv).
