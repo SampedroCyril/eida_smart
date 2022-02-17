@@ -1,0 +1,128 @@
+
+body, html {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-image: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: auto;
+    overflow-x: hidden;
+    position: relative;
+    padding-bottom: 40px;   
+    font-family: "GothamBook",sans-serif; 
+}
+
+td {
+    text-align: center; 
+} 
+
+th {
+    text-align: center; 
+} 
+
+.card {
+    color: black;
+    margin-bottom: 50px;   
+}
+
+.card-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    background-color: rgba(255, 195, 29, 1);   
+}
+
+.control-label {
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center; 
+    color: black;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+a {
+    font-size: larger;
+    color: black;   
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgba(255, 195, 29, 1)!important;
+    transform: scale3d(1.1, 1.1, 1.1);
+    transition: .3s cubic-bezier(.25, .1, .25, .1);
+}
+
+a.lien {
+    position: absolute;
+    top:240px;
+    right:121px;
+    color: black; 
+    margin-bottom: 30px; 
+    font-style: normal;     
+}
+ 
+a.lien2 {
+    position: absolute;
+    top:200px;
+    right:70px;
+    color: black;   
+}
+
+a.lien:hover {
+     text-decoration: none;
+     color:rgba(255, 195, 29, 1)!important;
+     transform: scale3d(1.1, 1.1, 1.1);
+     transition: .3s cubic-bezier(.25, .1, .25, .1);
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+    overflow:hidden;
+    width:100%;
+}
+
+.page-item.active .page-link {
+    background-color: rgba(255, 195, 29, 1);
+    border-color: rgba(255, 241, 188, 1);
+}
+
+.page-item.active .page-link:hover {
+    color: #fff!important;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+    margin-top: 40px;
+}
+
+div.dataTables_wrapper div.dataTables_length label {
+    margin-top: 40px;
+}
+
+footer {
+    background-color:rgba(127, 98, 204, 1);
+    color : black;
+    height : 50px;
+}
+
+@font-face {
+	font-family: "GothamBook";
+	src: url('../fonts/GothamBook.ttf')
+}
+@font-face {
+	font-family: "GothamBook";
+	font-style: italic;
+	src: url('../fonts/GothamBookItalic.ttf');
+}
+@font-face {
+	font-family: "GothamBook";
+	font-style: bold;
+	src: url('../fonts/GothamBold.ttf');
+}

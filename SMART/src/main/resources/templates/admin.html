@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Lien pour biblio Bootstrap -->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css" type="text/css">
+    <!-- Lien pour biblio typo -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+    <!-- Lien pour biblio Datatable -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css"/>
+    <!-- Lien pour fichier css -->
+    <link rel="stylesheet" href="css/styleadmin.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/popup.css">
+    <link rel="stylesheet" href="css/adminTabs.css">
+    <!--Lien pour fichier css MediaQueries-->
+    <link rel="stylesheet" href="css/media.css">
+
+    <!-- Icone onglet-->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/onglet.png">
+
+    <title> eida SMART</title>
+
+</head>
+
+<body>
+
+<!--Menu-->
+
+<nav class="topnav">
+    <img class="logo" id="logoNav" src="images/eidaLogoVer2_2.png">
+    <a href="/logout" id="deco"><i class="fas fa-sign-out-alt"></i> <p class="decoResponsive">Se déconnecter</p></Se></a>
+</nav> 
+
+<div id="main">
+
+    <div class="alert alert-danger text-center" role="alert" th:text="${error}" th:if="${error}"></div>
+
+    <h1> Bienvenue dans votre espace administrateur</h1>
+
+    
+    <a href="/admin/archiveClient"> <button type="submit"  class="glow-on-hover" id="btn-archCl"><i class="fas fa-archive" id="iconeArchive"></i> Consulter les archives</button> </a>
+
+    <!--POP UP RESSOURCE-->
+
+    <div class="container" id="popRessource">
+
+        <button type="button" class="glow-on-hover" id="btn-ressource" data-toggle="modal" data-target="#modall1"><i class="fas fa-file-upload" id="iconeRessource"></i> Gérer les ressources</button>
+
+        <div class="modal fade bd-example-modal-lg" id="modall1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ajouter une ressource ou une catégorie</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">x</span></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="accordion">  
+
+                            <!--AJOUT CATEGORIE-->
+                            <div class="card">
+
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Ajouter une catégorie
+                                      </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseOne" class="accordion show" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                                    <div class="card-body">
+                                        <div class="container">
+                                            <div class="card container formulaire bg-light">
+
+                                                <form action="/addCategory" method="POST">
+                                                    <div class="row">
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group" id="form-cat">
+                                                                <label>Nom de la catégorie :</label>
+                                                                <input type="text" class="form-control" name="title" required="Veuillez compléter ce champ">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group" id="form-cat">
+                                                                <button type="submit" class="glow-on-hover" id="save">Sauvegarder</button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>        
+                                                </form> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--AJOUT RESSOURCE-->
+
+                            <div class="card">
+
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                        Ajouter une ressource
+                                      </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="container">
+                                            <div class="card container formulaire bg-light">
+                                                <form action="/addressource"  method="POST" enctype="multipart/form-data" id="formClient">
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>Sélectionner une catégorie :</label>
+                                                                    <select name="cat" class="form-control" size="1">
+
+                                                                        <option th:each="category: ${categs}"
+                                                                                th:value="${category.id}"
+                                                                                th:text="${category.title}">
+                                                                        </option>
+                                                                   
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Titre :</label>
+                                                                    <input type="text" class="form-control" name="title" required="Veuillez compléter ce champ">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Type :</label>
+                                                                    <input type="text" class="form-control" name="type" required="Veuillez compléter ce champ">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>URL :</label>
+                                                                    <input type="text" class="form-control" name="url">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>Description :</label>
+                                                                    <textarea rows="5" class="form-control" id="description" name="description" required="Veuillez compléter ce champ"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group mx-auto">
+                                                            <input type="file" name="file" class="form-control-file">
+                                                        </div>
+
+                                                        <button type="submit" class="glow-on-hover" id="save2">Sauvegarder</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="glow-on-hover" data-dismiss="modal"> Fermer</button>    
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--POP UP CLIENT-->
+
+    <div class="container" id="popClient">
+
+        <button type="button" class="glow-on-hover" id="btn-client" data-toggle="modal" data-target="#modall2"><i class="fas fa-address-card" id="iconeClient"></i> Ajouter un client</button>
+
+        <div class="modal fade" id="modall2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ajouter un client</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">x</span></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <!--Formulaire-->
+                        <form action="/registerclient" method="POST">
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Entreprise</label>
+                                        <input type="text" name="agency" class="form-control" required="Veuillez compléter ce champ">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nom</label>
+                                        <input type="text" name="lastName" class="form-control" required="Veuillez compléter ce champ">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Prénom</label>
+                                        <input type="text" name="firstName" class="form-control" required="Veuillez compléter ce champ">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Numéro de téléphone</label>
+                                        <input type="tel" name="tel" class="form-control" required="Veuillez compléter ce champ"
+                                        pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" name="email" class="form-control" required="Veuillez compléter ce champ"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Adresse</label>
+                                        <input type="text" name="adress" class="form-control" required="Veuillez compléter ce champ">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Code postal</label>
+                                        <input type="number" name="postalCode" class="form-control"required="Veuillez compléter ce champ">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Ville</label>
+                                        <input type="text" name="city" class="form-control" required="Veuillez compléter ce champ">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Montant créditer sur le compte</label>
+                                        <input type="number" name="firsttransfer" class="form-control" required="Veuillez compléter ce champ">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Mot de passe :</label> <br>
+                                        <input name="password" id="password4" type="password" onkeyup='check4();' required="Veuillez compléter ce champ">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Confirmer le mot de passe :</label> <br>
+                                        <input type="password" name="confirm_password" id="confirm_password4" onkeyup='check4();' required="Veuillez compléter ce champ">                                       
+                                        <span id='message4'></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="clearfix"></div>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="glow-on-hover" data-dismiss="modal">Fermer</button>
+                                <button type="submit" class="glow-on-hover">Sauvegarder</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </br>
+<div class="container" id="icone">
+    <form><button type="button" id="clientBtn"><svg id="iconeAdmin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+        width="150" height="150"
+        viewBox="0 0 226 226"
+        style=" fill:#000000;"><defs><linearGreidant x1="84.75" y1="36.21297" x2="84.75" y2="53.68206" greidantUnits="userSpaceOnUse" id="color-1_RifZYzxgBrpE_gr1"><stop offset="0" stop-color="#eaee83"></stop><stop offset="1" stop-color="#fdc599"></stop></linearGreidant><linearGreidant x1="141.25" y1="36.21297" x2="141.25" y2="53.68206" greidantUnits="userSpaceOnUse" id="color-2_RifZYzxgBrpE_gr2"><stop offset="0" stop-color="#eaee83"></stop><stop offset="1" stop-color="#fdc599"></stop></linearGreidant><linearGreidant x1="113" y1="15.70347" x2="113" y2="197.94775" greidantUnits="userSpaceOnUse" id="color-3_RifZYzxgBrpE_gr3"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="79.45313" y1="15.70347" x2="79.45313" y2="197.94775" greidantUnits="userSpaceOnUse" id="color-4_RifZYzxgBrpE_gr4"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="155.375" y1="15.70347" x2="155.375" y2="197.94775" greidantUnits="userSpaceOnUse" id="color-5_RifZYzxgBrpE_gr5"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="158.90625" y1="15.70347" x2="158.90625" y2="197.94775" greidantUnits="userSpaceOnUse" id="color-6_RifZYzxgBrpE_gr6"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="158.90625" y1="15.70347" x2="158.90625" y2="197.94775" greidantUnits="userSpaceOnUse" id="color-7_RifZYzxgBrpE_gr7"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="146.54688" y1="15.70347" x2="146.54688" y2="197.94775" greidantUnits="userSpaceOnUse" id="color-8_RifZYzxgBrpE_gr8"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant></defs><g transform="translate(-20.34,-20.34) scale(1.18,1.18)"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,226v-226h226v226z" fill="none"></path><g><path d="M98.875,38.84375h-21.1875c-3.90203,0 -7.0625,3.16047 -7.0625,7.0625v10.59375h28.25z" fill="url(#color-1_RifZYzxgBrpE_gr1)"></path><path d="M148.3125,38.84375h-21.1875v17.65625h28.25v-10.59375c0,-3.90203 -3.16047,-7.0625 -7.0625,-7.0625z" fill="url(#color-2_RifZYzxgBrpE_gr2)"></path><g><path d="M186.77134,52.96875h-27.86509v-7.0625c0,-5.84069 -4.75306,-10.59375 -10.59375,-10.59375h-17.65625v-3.53125c0,-5.84069 -4.75306,-10.59375 -10.59375,-10.59375h-14.125c-5.84069,0 -10.59375,4.75306 -10.59375,10.59375v3.53125h-17.65625c-5.84069,0 -10.59375,4.75306 -10.59375,10.59375v7.0625h-27.86509c-9.94753,0 -18.04116,8.09363 -18.04116,18.04116v105.16416c0,9.95106 8.09362,18.04469 18.04116,18.04469h147.53916c9.95106,0 18.04469,-8.09363 18.04469,-18.04116v-105.16769c0,-9.94753 -8.09363,-18.04116 -18.04116,-18.04116zM148.3125,42.375c1.94925,0 3.53125,1.582 3.53125,3.53125v7.0625h-21.1875v-10.59375zM102.40625,31.78125c0,-1.94925 1.582,-3.53125 3.53125,-3.53125h14.125c1.94925,0 3.53125,1.582 3.53125,3.53125v21.1875h-7.0625v-10.59375h-7.0625v10.59375h-7.0625zM74.15625,45.90625c0,-1.94925 1.582,-3.53125 3.53125,-3.53125h17.65625v10.59375h-21.1875zM197.75,176.17759c0,6.05256 -4.92609,10.97866 -10.97866,10.97866h-147.54269c-6.05256,0 -10.97866,-4.92609 -10.97866,-10.97866v-105.16769c0,-6.05256 4.92609,-10.97866 10.97866,-10.97866h147.53916c6.05609,0 10.98219,4.92609 10.98219,10.97866z" fill="url(#color-3_RifZYzxgBrpE_gr3)"></path><path d="M116.53125,77.6875h-74.15625c-1.95278,0 -3.53125,1.57847 -3.53125,3.53125v84.75c0,1.95278 1.57847,3.53125 3.53125,3.53125h7.0625h60.03125h7.0625c1.95278,0 3.53125,-1.57847 3.53125,-3.53125v-84.75c0,-1.95278 -1.57847,-3.53125 -3.53125,-3.53125zM56.5,162.4375v-4.81309c0,-6.14791 2.40478,-11.85441 6.65288,-16.12722c4.16334,4.20219 9.92988,6.81531 16.30025,6.81531c6.36331,0 12.12631,-2.60606 16.28613,-6.80119c4.20925,4.26575 6.667,10.03228 6.667,16.11309v4.81309zM95.34375,125.35938c0,8.76103 -7.12959,15.89063 -15.89062,15.89063c-8.76103,0 -15.89062,-7.12959 -15.89062,-15.89062v-7.0625c0,-8.76103 7.12959,-15.89062 15.89063,-15.89062c8.76103,0 15.89063,7.12959 15.89063,15.89063zM113,162.4375h-3.53125v-4.81309c0,-8.35494 -3.52419,-16.28612 -9.55203,-21.92553c1.57847,-3.11103 2.48953,-6.61756 2.48953,-10.3395v-7.0625c0,-12.656 -10.29713,-22.95312 -22.95312,-22.95312c-12.656,0 -22.95312,10.29713 -22.95312,22.95313v7.0625c0,3.71841 0.90753,7.21787 2.48247,10.32891c-6.09141,5.66413 -9.54497,13.48937 -9.54497,21.93613v4.81309h-3.53125v-77.6875h67.09375z" fill="url(#color-4_RifZYzxgBrpE_gr4)"></path><rect x="38" y="29" transform="scale(3.53125,3.53125)" width="12" height="2" fill="url(#color-5_RifZYzxgBrpE_gr5)"></rect><rect x="38" y="25" transform="scale(3.53125,3.53125)" width="14" height="2" fill="url(#color-6_RifZYzxgBrpE_gr6)"></rect><rect x="38" y="33" transform="scale(3.53125,3.53125)" width="14" height="2" fill="url(#color-7_RifZYzxgBrpE_gr7)"></rect><path d="M146.54688,137.71875c-6.81531,0 -12.35937,5.54406 -12.35937,12.35938c0,6.81531 5.54406,12.35938 12.35938,12.35938c6.81531,0 12.35938,-5.54406 12.35938,-12.35937c0,-6.81531 -5.54406,-12.35937 -12.35937,-12.35937zM146.54688,155.375c-2.92034,0 -5.29687,-2.37653 -5.29687,-5.29687c0,-2.92034 2.37653,-5.29687 5.29688,-5.29687c2.92034,0 5.29688,2.37653 5.29688,5.29688c0,2.92034 -2.37653,5.29688 -5.29687,5.29688z" fill="url(#color-8_RifZYzxgBrpE_gr8)"></path></g></g></g></g></svg>
+    </button></form>
+
+    <form><button type="button" id="ressBtn"><svg id="iconeAdmin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+        width="150" height="150"
+        viewBox="0 0 172 172"
+        style=" fill:#000000;"><defs><linearGreidant x1="120.42687" y1="73.97682" x2="120.42687" y2="101.38717" greidantUnits="userSpaceOnUse" id="color-1_49470_gr1"><stop offset="0" stop-color="#eaee83"></stop><stop offset="1" stop-color="#fdc599"></stop></linearGreidant><linearGreidant x1="51.57313" y1="73.97682" x2="51.57313" y2="101.38717" greidantUnits="userSpaceOnUse" id="color-2_49470_gr2"><stop offset="0" stop-color="#eaee83"></stop><stop offset="1" stop-color="#fdc599"></stop></linearGreidant><linearGreidant x1="86" y1="16.05443" x2="86" y2="156.90297" greidantUnits="userSpaceOnUse" id="color-3_49470_gr3"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="120.42687" y1="16.05443" x2="120.42687" y2="156.90297" greidantUnits="userSpaceOnUse" id="color-4_49470_gr4"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="120.42687" y1="16.05443" x2="120.42687" y2="156.90297" greidantUnits="userSpaceOnUse" id="color-5_49470_gr5"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="112.23" y1="16.05443" x2="112.23" y2="156.90297" greidantUnits="userSpaceOnUse" id="color-6_49470_gr6"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="133.54188" y1="16.05443" x2="133.54188" y2="156.90297" greidantUnits="userSpaceOnUse" id="color-7_49470_gr7"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="51.57313" y1="16.05443" x2="51.57313" y2="156.90297" greidantUnits="userSpaceOnUse" id="color-8_49470_gr8"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="51.57313" y1="16.05443" x2="51.57313" y2="156.90297" greidantUnits="userSpaceOnUse" id="color-9_49470_gr9"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="43.37625" y1="16.05443" x2="43.37625" y2="156.90297" greidantUnits="userSpaceOnUse" id="color-10_49470_gr10"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="64.68813" y1="16.05443" x2="64.68813" y2="156.90297" greidantUnits="userSpaceOnUse" id="color-11_49470_gr11"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant></defs><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M85.14,86.86v-1.72h1.72v1.72z" fill="#cccccc"></path><g><path d="M135.18125,95.83625h-29.50875c-1.80987,0 -3.27875,-1.46888 -3.27875,-3.27875v-6.5575c0,-1.80987 1.46888,-3.27875 3.27875,-3.27875h29.50875c1.80987,0 3.27875,1.46888 3.27875,3.27875v6.5575c0,1.80987 -1.46888,3.27875 -3.27875,3.27875z" fill="url(#color-1_49470_gr1)"></path><path d="M66.3275,95.83625h-29.50875c-1.80987,0 -3.27875,-1.46888 -3.27875,-3.27875v-6.5575c0,-1.80987 1.46888,-3.27875 3.27875,-3.27875h29.50875c1.80987,0 3.27875,1.46888 3.27875,3.27875v6.5575c0,1.80987 -1.46888,3.27875 -3.27875,3.27875z" fill="url(#color-2_49470_gr2)"></path><path d="M161.41125,30.26125h-3.27875v-6.5575c0,-3.61646 -2.94104,-6.5575 -6.5575,-6.5575h-52.46c-5.38043,0 -10.12478,2.64267 -13.115,6.65914c-2.99022,-4.01647 -7.73457,-6.65914 -13.115,-6.65914h-52.46c-3.61646,0 -6.5575,2.94104 -6.5575,6.5575v6.5575h-3.27875c-5.42305,0 -9.83625,4.4132 -9.83625,9.83625v91.805c0,9.03951 7.35424,16.39375 16.39375,16.39375h49.74192c1.35412,3.81647 5.00009,6.5575 9.27558,6.5575h19.6725c4.27549,0 7.92146,-2.74103 9.27558,-6.5575h49.74192c9.03951,0 16.39375,-7.35424 16.39375,-16.39375v-91.805c0,-5.42305 -4.4132,-9.83625 -9.83625,-9.83625zM20.425,122.06625h52.46c4.26893,0 7.87556,2.75087 9.23296,6.5575h-61.69296zM99.115,23.70375h52.46v88.52625v3.27875h-52.46c-3.70499,0 -7.08866,1.28199 -9.83625,3.364v-16.479v-68.85375c0,-5.42305 4.4132,-9.83625 9.83625,-9.83625zM151.575,122.06625v6.5575h-61.69296c1.3574,-3.80663 4.96403,-6.5575 9.23296,-6.5575zM20.425,23.70375h52.46c5.42305,0 9.83625,4.4132 9.83625,9.83625v68.85375v16.40031c-2.74103,-2.05906 -6.14766,-3.28531 -9.83625,-3.28531h-52.46v-9.83625zM164.69,131.9025c0,5.42305 -4.4132,9.83625 -9.83625,9.83625h-55.73875v3.27875c0,1.80659 -1.46888,3.27875 -3.27875,3.27875h-19.6725c-1.80987,0 -3.27875,-1.47216 -3.27875,-3.27875v-3.27875h-55.73875c-5.42305,0 -9.83625,-4.4132 -9.83625,-9.83625v-91.805c0,-1.80659 1.46888,-3.27875 3.27875,-3.27875h3.27875v68.85375v9.83625v13.115c0,3.61646 2.94104,6.5575 6.5575,6.5575h131.15c3.61646,0 6.5575,-2.94104 6.5575,-6.5575v-13.115v-3.27875v-75.41125h3.27875c1.80987,0 3.27875,1.47216 3.27875,3.27875z" fill="url(#color-3_49470_gr3)"></path><path d="M102.39375,43.37625h36.06625v6.5575h-36.06625z" fill="url(#color-4_49470_gr4)"></path><path d="M102.39375,56.49125h36.06625v6.5575h-36.06625z" fill="url(#color-5_49470_gr5)"></path><path d="M102.39375,69.60625h19.6725v6.5575h-19.6725z" fill="url(#color-6_49470_gr6)"></path><path d="M128.62375,69.60625h9.83625v6.5575h-9.83625z" fill="url(#color-7_49470_gr7)"></path><path d="M33.54,43.37625h36.06625v6.5575h-36.06625z" fill="url(#color-8_49470_gr8)"></path><path d="M33.54,56.49125h36.06625v6.5575h-36.06625z" fill="url(#color-9_49470_gr9)"></path><path d="M33.54,69.60625h19.6725v6.5575h-19.6725z" fill="url(#color-10_49470_gr10)"></path><path d="M59.77,69.60625h9.83625v6.5575h-9.83625z" fill="url(#color-11_49470_gr11)"></path></g></g></svg>
+    </button></form>
+
+    <form><button type="button" id="msgBtn"><svg id="iconeAdmin" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+        width="150" height="150"
+        viewBox="0 0 172 172"
+        style=" fill:#000000;"><defs><linearGreidant x1="84.65625" y1="10.29312" x2="84.65625" y2="154.55812" greidantUnits="userSpaceOnUse" id="color-1_9OUVlDsyirZq_gr1"><stop offset="0" stop-color="#eaee83"></stop><stop offset="1" stop-color="#fdc599"></stop></linearGreidant><linearGreidant x1="84.65625" y1="7.01437" x2="84.65625" y2="167.67313" greidantUnits="userSpaceOnUse" id="color-2_9OUVlDsyirZq_gr2"><stop offset="0" stop-color="#d9e021"></stop><stop offset="1" stop-color="#fb872b"></stop></linearGreidant><linearGreidant x1="89.57437" y1="108.65562" x2="89.57437" y2="121.77062" greidantUnits="userSpaceOnUse" id="color-3_9OUVlDsyirZq_gr3"><stop offset="0" stop-color="#eaee83"></stop><stop offset="1" stop-color="#fdc599"></stop></linearGreidant><linearGreidant x1="112.52563" y1="108.65562" x2="112.52563" y2="121.77062" greidantUnits="userSpaceOnUse" id="color-4_9OUVlDsyirZq_gr4"><stop offset="0" stop-color="#eaee83"></stop><stop offset="1" stop-color="#fdc599"></stop></linearGreidant><linearGreidant x1="135.47687" y1="108.65562" x2="135.47687" y2="121.77062" greidantUnits="userSpaceOnUse" id="color-5_9OUVlDsyirZq_gr5"><stop offset="0" stop-color="#eaee83"></stop><stop offset="1" stop-color="#fdc599"></stop></linearGreidant></defs><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><path d="M85.14,86.86v-1.72h1.72v1.72z" fill="#ffffff"></path><g id="original-icon"><path d="M63.34438,115.21312c0,-21.72828 22.02008,-39.345 49.18125,-39.345c21.69221,0 40.06305,11.24611 46.60087,26.83985c3.76728,-7.78375 5.85913,-16.28555 5.85913,-25.20047c0,-37.12201 -35.96461,-67.21437 -80.32937,-67.21437c-44.36477,0 -80.32937,30.09237 -80.32937,67.21437c0,24.2857 15.39373,45.55823 38.46302,57.36829c-1.27871,5.6624 -4.42303,13.82321 -12.23302,19.68234c13.52156,-2.2525 23.94471,-7.60342 30.20384,-12.85926c6.08536,1.58364 12.48876,2.54431 19.09872,2.87218c-10.11167,-7.20669 -16.51506,-17.67246 -16.51506,-29.35793z" fill="url(#color-1_9OUVlDsyirZq_gr1)"></path><path d="M168.26438,77.5075c0,-38.86958 -37.50562,-70.49312 -83.60813,-70.49312c-46.1025,0 -83.60812,31.62354 -83.60812,70.49312c0,24.0693 14.12158,45.97135 37.91219,59.05029c-1.47216,4.91813 -4.43287,10.92152 -10.37069,15.37734c-1.20986,0.90494 -1.64265,2.52464 -1.04592,3.91155c0.52132,1.22297 1.71479,1.9902 3.01317,1.9902c0.17705,0 0.35738,-0.01639 0.53771,-0.0459c11.68547,-1.94758 22.67256,-6.47881 30.45631,-12.51499c5.52141,1.32789 11.29529,2.15414 17.19704,2.49841c9.1346,6.26569 20.91515,10.06248 33.77768,10.06248c3.18694,0 6.45914,-0.25902 9.75428,-0.76723c3.17383,3.55089 9.7051,8.42639 22.4955,10.56085c0.18033,0.02623 0.35738,0.04262 0.53772,0.04262c1.21314,0 2.34758,-0.67542 2.91481,-1.77708c0.65247,-1.26888 0.41312,-2.80989 -0.59673,-3.81974c-2.87218,-2.87218 -5.25911,-6.69521 -6.8657,-10.95758c15.0134,-7.79687 24.22013,-21.33155 24.22013,-35.90559c0,-4.32795 -0.80985,-8.5018 -2.29185,-12.44286c3.68204,-8.07884 5.5706,-16.56752 5.5706,-25.26277zM135.39818,146.44322c-1.48527,0.67214 -2.24922,2.33447 -1.79348,3.89516c0.88198,3.03612 2.10496,5.94765 3.60007,8.62311c-6.45258,-2.33447 -9.52149,-5.40666 -10.9084,-7.35096c-0.61968,-0.87543 -1.62298,-1.37708 -2.6689,-1.37708c-0.2,0 -0.39673,0.01967 -0.59673,0.05574c-3.56072,0.65575 -7.09194,0.99018 -10.50512,0.99018c-11.83301,0 -22.59715,-3.56728 -30.74484,-9.36411c-0.00656,-0.00656 -0.01312,-0.01311 -0.01967,-0.01967c-9.61985,-6.85259 -15.13799,-16.57736 -15.13799,-26.68247c0,-19.88562 20.59055,-36.06625 45.9025,-36.06625c1.43937,0 2.85579,0.06885 4.26237,0.17049c0.44263,0.03279 0.88198,0.08197 1.32134,0.12459c0.97707,0.09508 1.9443,0.20656 2.90169,0.34755c0.46886,0.06885 0.93772,0.14099 1.4033,0.22295c0.99674,0.17377 1.98036,0.37378 2.95087,0.59673c0.35083,0.08197 0.71149,0.15082 1.05904,0.23607c1.32789,0.33115 2.63284,0.70165 3.90171,1.12461c0.09508,0.03279 0.18689,0.06885 0.28197,0.10164c1.17707,0.39673 2.32791,0.83608 3.45252,1.30822c0.29509,0.12459 0.58034,0.25574 0.87215,0.38361c0.941,0.4164 1.85905,0.85247 2.75743,1.31806c0.27869,0.14426 0.56067,0.28853 0.83608,0.43935c0.96395,0.5246 1.90495,1.07543 2.81317,1.65577c0.15738,0.09836 0.32132,0.19345 0.47542,0.29509c1.08527,0.70821 2.12791,1.44921 3.12465,2.23283c0.0623,0.04918 0.11804,0.10164 0.18033,0.15082c0.86559,0.68526 1.68528,1.4033 2.47873,2.14102c0.33443,0.31148 0.64919,0.63608 0.97051,0.95739c0.4787,0.4787 0.941,0.96395 1.39019,1.45904c0.39345,0.43935 0.78034,0.88198 1.15084,1.33773c0.29837,0.36394 0.57706,0.73772 0.85903,1.1115c0.42952,0.57378 0.86231,1.14428 1.25576,1.74102c0.05902,0.09181 0.11148,0.18689 0.1705,0.27542c1.0492,1.62626 1.96397,3.32465 2.70825,5.09518c0.01311,0.03279 0.03934,0.05902 0.05574,0.0918c1.45577,3.51482 2.2689,7.25587 2.2689,11.14775c0,12.81008 -8.82312,24.77751 -23.02994,31.23009zM158.74616,95.06521c-0.01639,-0.02623 -0.03935,-0.05246 -0.05574,-0.07869c-0.07541,-0.11148 -0.15738,-0.2164 -0.23279,-0.32787c-0.6951,-1.02953 -1.45249,-2.02627 -2.24266,-2.99678c-0.13771,-0.16722 -0.27542,-0.33443 -0.4164,-0.50165c-1.83282,-2.18037 -3.89843,-4.20336 -6.17061,-6.05257c-0.01967,-0.01639 -0.04262,-0.03279 -0.0623,-0.04918c-2.3607,-1.91479 -4.93452,-3.64269 -7.69195,-5.15747c-0.04262,-0.02295 -0.08525,-0.04262 -0.12787,-0.06558c-1.2656,-0.69182 -2.57382,-1.33445 -3.91155,-1.93118c-0.18033,-0.08197 -0.35738,-0.16394 -0.53772,-0.24263c-1.38691,-0.60329 -2.80333,-1.16724 -4.25582,-1.66888c-0.16066,-0.05574 -0.33115,-0.10164 -0.49181,-0.15738c-1.2492,-0.41968 -2.52136,-0.79674 -3.81646,-1.13773c-0.37706,-0.09836 -0.75083,-0.2 -1.13117,-0.29181c-1.45249,-0.3541 -2.92137,-0.67214 -4.41648,-0.92461c-0.16722,-0.02951 -0.34099,-0.0459 -0.50821,-0.07213c-1.36396,-0.21968 -2.74759,-0.38361 -4.14106,-0.51476c-0.4164,-0.03934 -0.83608,-0.07541 -1.25576,-0.10492c-1.5738,-0.12131 -3.15416,-0.2 -4.75419,-0.2c-28.92513,0 -52.46,19.12167 -52.46,42.62375c0,1.3115 0.09508,2.61316 0.24263,3.91155c0.05246,0.4623 0.13443,0.91805 0.20328,1.37708c0.12459,0.81313 0.27214,1.6197 0.45575,2.423c0.12131,0.54099 0.25246,1.07871 0.40001,1.61315c0.2,0.71805 0.43279,1.42626 0.67542,2.13447c0.18361,0.53444 0.35083,1.07543 0.56067,1.60331c0.38689,0.97051 0.82625,1.92791 1.29838,2.87546c0.31804,0.63936 0.67214,1.25904 1.02625,1.882c0.36722,0.64919 0.73772,1.29511 1.14428,1.92791c0.33771,0.52132 0.70165,1.02953 1.06559,1.53773c0.41968,0.5869 0.8492,1.16723 1.30166,1.73774c0.38689,0.48525 0.77706,0.96395 1.18691,1.43937c0.17377,0.20328 0.32787,0.4164 0.50821,0.6164c-2.91809,-0.45247 -5.77388,-1.03936 -8.55098,-1.76397c-1.02625,-0.2623 -2.12135,-0.02295 -2.93448,0.66231c-2.49841,2.09512 -8.5018,6.46569 -18.22657,9.61329c3.06235,-4.59353 4.69189,-9.37067 5.5542,-13.20353c0.33115,-1.45904 -0.3705,-2.95415 -1.70495,-3.63613c-22.95453,-11.76415 -36.66626,-32.12191 -36.66626,-54.45676c0,-35.25312 34.56458,-63.93562 77.05062,-63.93562c42.48604,0 77.05063,28.68251 77.05063,63.93562c0,5.98044 -0.99346,11.86252 -2.96071,17.55771z" fill="url(#color-2_9OUVlDsyirZq_gr2)"></path><circle cx="27.31967" cy="35.13934" transform="scale(3.27875,3.27875)" r="2" fill="url(#color-3_9OUVlDsyirZq_gr3)"></circle><circle cx="34.31967" cy="35.13934" transform="scale(3.27875,3.27875)" r="2" fill="url(#color-4_9OUVlDsyirZq_gr4)"></circle><circle cx="41.31967" cy="35.13934" transform="scale(3.27875,3.27875)" r="2" fill="url(#color-5_9OUVlDsyirZq_gr5)"></circle></g><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path><path d="M60.2,111.8v-51.6h51.6v51.6z" fill="none"></path><path d="M63.64,108.36v-44.72h44.72v44.72z" fill="none"></path><path d="M45.58,126.42v-80.84h80.84v80.84z" fill="none"></path><path d="M49.02,122.98v-73.96h73.96v73.96z" fill="none"></path><path d="M35.26,136.74v-101.48h101.48v101.48z" fill="none"></path><path d="M38.7,133.3v-94.6h94.6v94.6z" fill="none"></path><path d="M27.52,144.48v-116.96h116.96v116.96z" fill="none"></path><path d="M30.96,141.04v-110.08h110.08v110.08z" fill="none"></path><path d="M20.64,151.36v-130.72h130.72v130.72z" fill="none"></path><path d="M24.08,147.92v-123.84h123.84v123.84z" fill="none"></path><path d="M14.62,157.38v-142.76h142.76v142.76z" fill="none"></path><path d="M18.06,153.94v-135.88h135.88v135.88z" fill="none"></path><path d="M6.02,165.98v-159.96h159.96v159.96z" fill="none"></path><path d="M9.46,162.54v-153.08h153.08v153.08z" fill="none"></path><path d="M0,172v-172h172v172z" fill="none"></path><path d="M3.44,168.56v-165.12h165.12v165.12z" fill="none"></path><path d="M0.86,171.14v-170.28h170.28v170.28z" fill="none"></path><path d="M4.3,167.7v-163.4h163.4v163.4z" fill="none"></path><path d="M36.98,135.02v-98.04h98.04v98.04z" fill="none"></path><path d="M40.42,131.58v-91.16h91.16v91.16z" fill="none"></path><path d="M67.94,104.06v-36.12h36.12v36.12z" fill="none"></path><path d="M71.38,100.62v-29.24h29.24v29.24z" fill="none"></path><path d="M77.4,94.6v-17.2h17.2v17.2z" fill="none"></path><path d="M80.84,91.16v-10.32h10.32v10.32z" fill="none"></path><path d="M79.12,92.88v-13.76h13.76v13.76z" fill="none"></path><path d="M82.56,89.44v-6.88h6.88v6.88z" fill="none"></path><path d="M79.98,92.02v-12.04h12.04v12.04z" fill="none"></path><path d="M83.42,88.58v-5.16h5.16v5.16z" fill="none"></path></g></g></svg>
+    </button></form>
+</div>
+
+
+    <!--LISTE CLIENT-->
+    <div class="table-responsive">
+        <div id="divClient">
+            <h3 class="h3client">LISTE DES CLIENTS :</h3>
+            <br>
+            <table id="example2" class="table table-striped" style="width:100%">
+
+                <thead class="thead">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Adresse</th>
+                        <th>Code postal</th>
+                        <th>Ville</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Agence</th>
+                        <th>Gestion du client</th>
+                        <th>Consulter les comptes</th>
+                        <th>Supprimer le client</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    
+                    <tr th:each="client : ${clients}">
+                        <td th:text="${client.lastName}" scope="row">['name_user']</td>
+                        <td th:text="${client.firstName}">['first_name']</td>
+                        <td th:text="${client.adress}">['adress']</td>
+                        <td th:text="${client.postalCode}">['postal_code']</td>
+                        <td th:text="${client.city}">['city']</td>
+                        <td th:text="${client.email}">['email']</td>
+                        <td th:text="${client.tel}">['num_tel']</td>
+                        <td th:text="${client.agencyPlace}">['agency_place']</td>
+
+                        <td class="update">
+
+                            <!--POP UP UPDATE-->
+
+                            <div class="container">
+
+                                <button type="button" id="update" class="glow-on-hover" data-toggle="modal" th:data-target="${'#modal'+client.id}">
+                                    <i class="fas fa-folder-open"></i></button>
+
+                                <div class="modal fade bd-example-modal-lg" th:id="${'modal'+client.id}" tabindex="-1" role="dialog"
+                                    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Gestion du profil</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                        aria-hidden="true">x</span></button>
+                                            </div>
+
+                                            <div class="modal-body">
+
+                                                <div id="accordion">
+
+                                                    <!--VIREMENT-->
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingOne">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link" data-toggle="collapse"
+                                                                        data-target="#collapseOne" aria-expanded="true"
+                                                                        aria-controls="collapseOne">
+                                                                    Effectuer un virement
+                                                                </button>
+                                                            </h5>
+                                                        </div>
+
+                                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                                            data-parent="#accordion">
+                                                            <div class="card-body">
+
+                                                                <form action="/virementadmin" method="post">
+                                                                    <input type="hidden" th:value="${client.id}"name="clientId"/>
+
+                                                                    <div class="container">
+
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 mx-auto">
+                                                                                <div class="form-group">
+                                                                                    <div class="form-group">
+                                                                                        <label>Indiquer le montant du virement :</label>
+                                                                                        <input type="number" name="montant" class="form-control" id="montant" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <button type="submit" class="glow-on-hover"
+                                                                                href="#"  th:onclick="'message();' "> Envoyer le virement
+                                                                        </button>
+
+                                                                        <script>
+                                                                        function message (){
+                                                                        var montant= document.getElementById('montant').value;
+                                                                        if(montant !="")
+                                                                        {
+                                                                        alert("Le virement a bien été effectué!")
+                                                                        }
+                                                                        }
+                                                                        </script>
+
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--MODIFIER LE PROFIL-->
+                                                    
+                                                    <div class="card">
+
+                                                        <div class="card-header" id="headingThree">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link collapsed"
+                                                                        data-toggle="collapse"
+                                                                        data-target="#collapseThree" aria-expanded="false"
+                                                                        aria-controls="collapseThree">
+                                                                    Modifier le profil
+                                                                </button>
+                                                            </h5>
+                                                        </div>
+
+                                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                                                                                            
+                                                            <div class="card-body">
+
+                                                                <div class="container" id="profil">
+
+                                                                    <div class="card container formulaire bg-ligth">
+
+                                                                        <!--METTRE A JOUR LES COORDONNEES-->
+
+                                                                        <div class="header">
+                                                                            <h4 class="title">Mettre à jour les coordonnées</h4>
+                                                                        </div>
+
+                                                                        <div class="content">
+
+                                                                            <form action="#" data-th-action="@{/updateclient}" data-th-object="${model}"  method="POST">
+                            
+                                                                                <input type="hidden" th:value="${client.id}" name="clientId"/>
+                                                                                        
+                                                                                <div class="row">
+                                                                                    <div class="col-md-5">
+                                                                                        <div class="form-group">
+                                                                                            <label>Nom de l'entreprise</label>                                                                            
+                                                                                            <input type="text" name="agency2" class="form-control" th:value="${client.agencyPlace}" required="Veuillez compléter ce champ">                                                                                
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="row">
+
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group">
+                                                                                            <label>Nom</label>
+                                                                                            <input type="text" name="lastName2" class="form-control" th:value="${client.lastName}" required="Veuillez compléter ce champ">                                                                                                                                                               
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group">
+                                                                                            <label>Prénom</label>
+                                                                                            <input type="text" name="firstName2" class="form-control" th:value="${client.firstName}" required="Veuillez compléter ce champ">                                                                                                                                                       
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                                <div class="row">
+
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group">
+                                                                                            <label>Numéro de téléphone</label>                                                                           
+                                                                                            <input type="tel" name="tel2" class="form-control" th:value="${client.tel}"required="Veuillez compléter ce champ"
+                                                                                            pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group">
+                                                                                            <label>Email</label>
+                                                                                            <input type="email" name="email2" class="form-control" th:value="${client.email}" required="Veuillez compléter ce champ"
+                                                                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">                                                                                                                                                              
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                                <div class="row">
+                                                                                    <div class="col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label>Adresse</label>
+                                                                                            <input type="text" name="adress2" class="form-control" th:value="${client.adress}" required="Veuillez compléter ce champ" >                                                                               
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="row">
+
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group">
+                                                                                            <label>Code postal</label>
+                                                                                            <input type="number"
+                                                                                                    name="postalCode2"
+                                                                                                    class="form-control" th:value="${client.postalCode}" required="Veuillez compléter ce champ" >
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group">
+                                                                                            <label>Ville</label>
+                                                                                            <input type="text" name="city2"
+                                                                                                    class="form-control" th:value="${client.city}" required="Veuillez compléter ce champ">
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                                <div class="row">
+
+                                                                                    <div class="col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label>Mot de passe :</label> <br>
+                                                                                            <input name="password2" id="password2" type="password" required="Veuillez compléter ce champ">
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                                <button type="submit"class="glow-on-hover">Sauvegarder</button>  
+
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+
+                                                                        <!--METTRE A JOUR LE MDP-->
+                                                                
+                                                                    <div class="card container formulaire bg-ligth">
+
+                                                                        <div class="header">
+                                                                            <h4 class="title">Mettre à jour le mot de passe</h4>
+                                                                        </div>
+
+                                                                        <div class="content">
+                                                                            <form action="#" data-th-action="@{/updateclientmdp}" data-th-object="${model}"  method="POST">
+                                                                                <input type="hidden" th:value="${client.id}" name="clientIdMdp"/>
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <div class="form-group">
+                                                                                                <label>Ancien mot de passe :</label>        
+                                                                                                <br>
+                                                                                                <input type="password" name="password3" required="Veuillez compléter ce champ">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <div class="form-group">
+                                                                                                <label>Nouveau mot de passe :</label>                                                                                   
+                                                                                                <br>
+                                                                                                <input name="password4" id="password5" type="password" onkeyup='check5();' required="Veuillez compléter ce champ">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <div class="form-group">
+                                                                                                <label>Confirmer le nouveau mot de passe :</label>                                                                                   
+                                                                                                <br>
+                                                                                                <input type="password" name="confirm_password4" id="confirm_password5" onkeyup='check5();' required="Veuillez compléter ce champ">
+                                                                                                <span id='message5'></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                <button type="submit"class="glow-on-hover">Sauvegarder</button>  
+
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="glow-on-hover" data-dismiss="modal">Fermer</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <form action="#" data-th-action="@{/consult}" data-th-object="${model}"
+                                  method="POST"><input
+                                    type="hidden" th:value="${client.id}" name="consultClientId">
+                                <button type="submit" id="update" class="glow-on-hover"><i class="fas fa-money-check"></i></button>
+                            </form>
+                        </td>
+
+                        <td>
+                            <form action="#" data-th-action="@{/disableuser}" data-th-object="${model}"
+                                method="POST"><input
+                                    type="hidden" th:value="${client.id}" name="clientId">
+                                <button type="submit" id="update" class="glow-on-hover"
+                                        onclick="return confirm('Etes vous sur de vouloir supprimer ce client ?');">
+                                    <i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+    <!--LISTE RESSOURCES-->
+    <div class="table-responsive">
+        <div id="divRes">
+            <h3>LISTE DES RESSOURCES :</h3>
+            <br>
+
+            <table id="example3" class="table table-striped" style="width:100%">
+
+                <thead class="thead">
+                    <tr>   
+                        <th>Titre</th>
+                        <th>Type</th>
+                        <th>URL</th>
+                        <th>Description</th>
+                        <th>Email</th>
+                        <th>Consulter la ressource</th>
+                        <th>Supprimer la ressource</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    
+                    <tr th:each="ressource : ${resources}">
+                        <td th:text="${ressource.title}" scope="row">['title']</td>
+                        <td th:text="${ressource.type}">['type']</td>
+                        <td th:text="${ressource.url}">['url']</td>
+                        <td th:text="${ressource.description}">['description']</td>
+                        <td th:value="${ressource.user.id}" th:text="${ressource.user.email}">['email]</td>
+
+                        <td th:if="${ressource.url} == ''" class="td-actions text-center update">
+                            <a th:href="${ressource.file}" target="_blank"><button type="button" id="update" class="glow-on-hover"><input th:value="${ressource.file}" hidden><i class="fas fa-folder-open"></i></button></a>
+                        </td>
+
+                        <td th:if="${ressource.url} != ''" class="td-actions text-center update">
+                            <a th:href="${ressource.url}" target="_blank"><button type="button" id="update" class="glow-on-hover"><input th:value="${ressource.url}" hidden><i class="fas fa-folder-open"></i></button></a>
+                        </td>
+
+                        <td>
+                            <form action="#" data-th-action="@{/delres}" data-th-object="${model}" method="POST">
+                                <input type="hidden" th:value="${ressource.id}" name="resId">
+
+                                <button type="submit" id="update" class="glow-on-hover"
+                                        onclick="return confirm('Etes vous sur de vouloir supprimer cette ressource ?');">
+                                <i class="fas fa-trash-alt"></i></button>
+                            </form>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--LISTE MESSAGES-->
+    <div class="table-responsive">
+        <div id="divMsgs">
+            <h3>LISTE DES MESSAGES:</h3>
+            <br>
+
+            <table id="example4" class="table table-striped" style="width:100%">
+
+                <thead class="thead">
+                    <tr>
+                        <th>Objet</th>
+                        <th>Email</th>
+                        <th>Consulter le message</th>
+                        <th>Supprimer le message</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    
+                    <tr th:each="contact : ${contacts}">
+
+                        <td th:text="${contact.object}" scope="row">['object']</td>
+                        <td th:value="${contact.user.id}" th:text="${contact.user.email}">['email']</td>
+                        <td>
+                            <div class="container">
+
+                                <button type="button" id="update" class="glow-on-hover" data-toggle="modal" th:data-target="${'#modal'+contact.id}"><i class="fas fa-comments"></i></button>
+                        
+                                <div class="modal fade" th:id="${'modal'+contact.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Consulter le message</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                        aria-hidden="true">x</span></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <p th:text="${contact.text}">['message']</p>
+                                            </div>
+                        
+                                            <div class="clearfix"></div>
+                
+                
+                                            <div class="modal-footer">
+                                                <button type="button" class="glow-on-hover" data-dismiss="modal">Fermer</button>
+                                            </div>
+                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <form action="#" data-th-action="@{/delmsg}" data-th-object="${model}" method="POST">
+                                <input type="hidden" th:value="${contact.id}" name="contactId">
+
+                                <button type="submit" id="update" class="glow-on-hover"
+                                        onclick="return confirm('Etes vous sur de vouloir supprimer ce message ?');">
+                                <i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<footer class="fixed-bottom">
+
+    <!--ICONES-->
+    <a href="https://www.eida.org/" target="_blank"><img src="/images/eidaLogo.png" alt="Logo originel de l'eida"title="Cliquez pour visiter le site de l'eida" id="logoO"></a>  
+    <a href="https://www.facebook.com/association.eida"><img src="images/fbicone.png" alt="icone Facebook" id="fb"class="col-1 mb-3"></a>                                                        
+    <a href="https://twitter.com/eidaorg"><img src="images/twicone.png" alt="icone Twitter" id="tw" class="col-1 mb-3"></a>
+    <a href="https://fr.linkedin.com/company/eida-adigo"><img src="images/lkicone.png" alt="icone linkedin" id="lk"class="col-1 mb-3"></a>
+
+</footer>                                                             
+
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="vendor/jquery/jquery-3.5.1.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Biblio JQUERY datatable-->
+    <script src="vendor/DataTables/datatables.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="js/menu.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

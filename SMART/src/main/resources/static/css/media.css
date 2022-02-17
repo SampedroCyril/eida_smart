@@ -1,0 +1,976 @@
+@media(max-width:750px){
+
+    #logoNav {
+        width: 200px;
+        margin-left: 25%;     
+    }
+
+    .decoResponsive {
+        display: none;
+    }
+
+    .text-center {
+        margin-top: -15px !important;
+        font-size: 1.1rem !important;
+        margin-bottom: 20px !important;
+    }
+
+    #deco {
+        margin-right: -2em;
+        font-size: 20px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+        padding-top: 30px;
+        margin-left: -5px;
+        margin-right: 10px;
+        padding-bottom: 40px;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+        text-align: center;
+        margin-bottom: -15%;
+    }
+
+    .fixed-bottom {
+        height: 50px;
+    }
+
+    #logoO {
+        max-width: 65px;
+        margin-top: 5px;
+        margin-left: 10px;
+        padding-top: 6px;
+    }
+
+    #lk, #tw, #fb {
+        min-width: 55px;
+    }
+
+    .glow-on-hover {
+        font-size: 14px;
+        width: 155px;
+        height: 45px;
+    }
+
+    /* Page ARCHIVE */
+    .h1Archive {
+        font-size: 1.3rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: -7%;
+        margin-top: -5%;
+    }
+
+    #btn-archAd {
+        display: block;
+        margin : auto;
+        float: none;  
+        width: 220px;
+        height: 50px;
+    }
+
+    #btn-ajoutAdmin {
+        width: 220px;
+        height: 50px;
+    }
+    #example8_wrapper {
+        margin-top: -9%;
+    }
+    #example9_wrapper {
+        margin-top: -12%;
+    }
+
+     /* Page SADMIN */
+    #popAdmin {
+        display: inline-block;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+        margin-bottom: 35px;
+        margin-top: 15px;
+        font-size: 12px;
+       /* width: 87%; */
+    }
+
+    div.dataTables_wrapper div.dataTables_filter label {
+        margin-top: -1em;
+        margin-bottom: 1.5em;
+    }
+
+    .table th {
+        text-align: center;
+    }
+
+    #modal-body-update {
+        padding: 5%;
+    }
+
+    #headingOne, #headingTwo {
+        padding-top: 0;
+        padding-bottom: 0;
+        color: #ffc31d;
+    }
+
+    label {
+        font-size: 1em;
+    }
+
+    #formSadmin {
+        font-size: 0.8em;
+    }
+
+     /* Page ADMIN */
+    #popRessource {
+        display: inline-block;
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    #popClient {
+        text-align: center;
+        margin-top: 5px;
+        margin-right: 0;
+    }
+
+    #btn-archCl {
+        display: block;
+        margin : auto;
+        float: none; 
+        width: 200px;
+        height: 50px;
+        font-size: 14px;
+    }
+    
+    #btn-ressource {
+        width: 200px;
+        height: 50px;
+        font-size: 14px;
+    }
+
+    #btn-client {
+        width: 200px;
+        height: 50px;
+        font-size: 14px;
+    }
+
+    #icone {
+        display: flex;
+        margin-left: 0px;
+        justify-content: space-between;
+        padding-right: 15px;
+        padding-left: 0px;
+        margin-top: -9%;    
+    }
+
+    #iconeAdmin {
+        width: 80px;
+        height: 80px;
+    }
+
+    #clientBtn {
+        margin-left: auto;
+        margin-top: 90px;
+        width: 90px;
+        height: 90px;
+        position: relative;
+    }
+
+    #ressBtn {
+        margin-left: auto;
+        margin-top: 90px;
+        width: 90px;
+        height: 90px;
+        position: relative;
+    }
+
+    #msgBtn {
+        margin-left: auto;
+        margin-top: 90px;
+        margin-bottom: 50px;
+        width: 90px;
+        height: 90px;
+        position: relative;
+    }
+
+    #return {
+        font-size: 32px;
+        float: left;
+        margin-top: -70px;
+        margin-left: -15px;
+        position: relative;
+    }
+
+    #save {
+        margin: 0px;
+        text-align: center;
+    }
+
+    #description {
+        border-radius: 15px !important;
+    }
+
+    .form-control-file {
+        border-radius: 0px !important;
+        border: none !important;
+    }
+
+    #save2 {
+        text-align: center;
+        margin-left: 0px;
+    }
+
+    #form-cat {
+        text-align: center;
+    }
+
+    .modal-body {
+        padding-bottom: 0px;
+        margin-bottom: -15px;
+        padding:2.5rem;
+    }
+
+    .modal-footer {
+        justify-content: center;
+    }
+
+    .bg-light {
+        margin-bottom: 25px;
+    }
+
+    /* Page LOGIN */
+    #logo {
+        margin-left: auto;
+        margin-right: auto;
+        width: 200px;
+    }
+
+    #header {
+        height: 110px;
+    }
+
+    #exampleInputEmail1 {
+        margin-left: -5%;
+        width: 300px;
+    }
+
+    #exampleInputPassword1 {
+        margin-left: -5%;
+        width: 300px;
+    }
+
+    #connexion {
+        display: block;
+        margin : auto;
+        margin-top: 10px;
+    }
+
+    #form-login {
+        margin-top: 20%;
+        margin-bottom: 20%;
+        display: flex;
+        justify-content: center;
+        width: 345px;
+        padding-bottom: 40%;
+        padding-top: 40%;
+    }
+
+    #forma2 {
+        position: absolute;
+        margin-top: -35%;
+        width: 150px;
+        right: 10%;
+    }
+
+    #forma {
+        position: absolute;
+        margin-top: 70%;
+        width: 150px;
+        left: 10%;
+        padding-top: 5%;
+    }
+
+    .text-center {
+        font-size: 1.4rem !important;
+        margin-top: -10px !important;
+    }
+
+      /* Page CONSUL COMPTES */
+    #returnCompte {
+        font-size: 32px;
+        float: left;
+        padding-bottom: 0px;
+        margin-top: -70px;
+        margin-left: -15px;
+    }
+
+    #tabEpargne {
+        margin-top: 0px;
+    }
+
+    #container2 {
+        display: flex;
+        justify-content: center;
+        width: 0px;
+        margin-bottom: 10px;
+        margin-top: 20%;
+        margin-left: 10%;
+        text-align: center;
+    }
+
+    #gaugeConsult {
+        height: 150px;
+    }
+    .h1Consult {
+        font-size: 1.3rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: -7%;
+        margin-top: -5%;
+    }
+
+    #h3Consult {
+        margin-bottom: -3%;
+    }
+
+    #tabRespConsult {
+        margin-top: -6%;
+    }
+
+    #example, #example5, #example2, #example9, #example8, #example12 {
+        font-size: 13px;
+    }
+   
+    /* Page CONTACT */
+
+    #story {
+        width: 250px;
+        height: 200px;
+    }
+
+    #formContact {
+        font-size: 0.9rem;
+    }
+
+    #formContact2 {
+        font-size: 0.9rem;
+        margin-bottom: 7%;
+    }
+
+    .custom-select {
+        font-size: 0.8rem;
+    }
+
+    /*Page RESSOURCE */
+
+    #h1Cat {
+        padding-bottom: 5%;
+        font-size: 1.1rem;
+    }
+
+    #titleCat {
+        font-size: 0.9rem;
+    }
+
+    #cats {
+        margin-left: 0px;
+        margin-bottom: 3%;
+    }
+
+    #action {
+        width: 60%;
+        margin-top: 3%;
+        margin-bottom: 5%; 
+        margin-left: -1%;  
+    }
+
+    #tableRess {
+        font-size: 14px;
+        font-weight: lighter;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter input {
+        width: 200px;
+        margin-right: auto;
+    }
+
+    /* Page CLIENT */
+
+    h5 {
+        font-size: 1.3rem;
+        margin-top: 7%;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        padding-bottom: 15%;
+    }
+
+    .gauge {
+        width: 150px;
+        height: 150px;
+        margin-top: -70px;
+        display:inline-block;
+    }
+
+    #container {
+        display: flex;
+        justify-content: center;
+        width: 200px;
+        margin-bottom: 10px;
+    }
+
+    #accordionFlushExample {
+        font-size: 15px;
+    }
+
+    .accordion-body {
+        padding: 0px;
+        margin-bottom: 25px;
+    }
+
+    h4 {
+        font-size: 17.5px;
+        margin-top: 3%;
+    }
+
+    .form-control form-control-sm {
+        display: flex;
+        justify-content: center;
+    }
+
+    .card text-center {
+        margin-left:-20px;
+    }
+
+    .btn-info {
+        width: 37px;
+    }
+
+    svg {
+        width: 250px;
+    }
+
+    .mainClient, .mainRessource, .mainContact {
+        margin-right: auto !important;
+        margin-left: auto !important;
+        margin-bottom: -5% !important;
+        margin-top: 5%;
+    }
+
+    .accordion-flush .accordion-button {
+        font-size: 15px;
+    }
+
+    #flush-headingOne, #flush-headingFour {
+        text-align: center;
+        padding-left: 10%;
+    }
+
+    .card-header  {
+        font-size: 13px;
+    }
+
+    .nav {
+        justify-content: space-evenly;
+        flex-wrap :nowrap;
+    }
+
+    .nav-tabs .nav-item {
+        width: 130px;
+    }
+
+    .card-header-tabs {
+        margin-right: 1.2rem;
+        margin-left: 1.2rem;
+    }
+
+    .col-sm-12 {
+        font-size: 12px;
+    }
+
+    #btnVirement {
+        margin-top: 5%;
+        margin-bottom: 2%;
+        width: 150px;
+        height: 40px;
+        font-size: 13px;
+    }
+
+    #btnVirement2 {
+        width: 150px;
+        height: 40px;
+        font-size: 13px;
+    }
+
+    #labelVirement {
+        font-size: 1em;
+    }
+
+    .formulaire {
+        padding: 5%;
+        margin-bottom: 5%;
+        font-size: 14px;
+    }
+
+    .formulaire2 {
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+    .card {
+        margin-bottom: 5%;
+        margin-top: 5%;
+    }
+
+    .form-control {
+        font-size : 1em;
+    }
+
+    .mx-auto {
+        width: 100%;
+    }
+
+    #example_filter, #example5_filter, #example8_filter, #example12_filter {
+        text-align: left;
+        margin-left: -3%;
+    }
+
+    #example6_filter {
+        margin-left: -6%;
+    }
+
+    #example2_filter, #example3_filter, #example4_filter {
+        text-align: left;
+        margin-left: 2%;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter input {
+        width: 150px;
+    }
+
+}
+
+@media only screen and (min-width:751px) and (max-width:1280px) {
+
+    /* NAV */
+
+    #logoO {
+        padding-top: 1%;
+        max-width: 70px;
+    }
+
+    #logoNav {
+        width: 180px;
+    }
+
+    #lk, #fb, #tw {
+        min-width: 56px;
+    }
+
+    .topnav {
+        height: 100px;
+    }
+
+    #deco {
+        font-size: 17px;
+        margin-top: 2%
+    }
+
+    /* LOGIN */
+
+    #logo {
+       max-width: 27%;
+    }
+
+    .mt-5 {
+        margin-top: 1.5rem !important;
+    }
+
+    #header {
+        height: 120px;
+    }
+
+    #form-login {
+        margin-top: 40%;
+        width: 80%;
+    }
+
+    #forma2 {
+        position: absolute;
+        margin-top: -30%;
+        width: 210px;
+        left:10%;
+    }
+
+    #forma {
+        position: absolute;
+        margin-top: -30%;
+        width: 210px;
+        left: 60%;
+    }
+
+    #exampleInputEmail1 {
+        width: 300px;
+    }
+
+    #exampleInputPassword1 {
+        width: 300px;
+    }
+
+    #emailHelp {
+        width: 300px;
+    }
+
+    #connexion {
+        margin-left: 25%;
+    }
+ 
+    /* ADMIN */
+
+    h1 {
+        font-size: 1.6rem;
+        padding-top: 3%;
+    }
+
+    #btn-archCl {
+        float: left;
+        font-size: 14px;
+        width: 200px;
+        height: 50px;
+        margin-top: 3%;
+    }
+
+    #popRessource {
+        margin-right: 0px;
+        margin-left: 32%
+    }
+
+    #btn-ressource {
+        font-size: 14px;
+        width: 200px;
+        height: 50px;
+        margin-top: 3%;
+    }
+
+    #btn-client {
+        font-size: 14px;
+        width: 200px;
+        height: 50px;
+        margin-top: -10.2%;
+    }
+
+    #popClient {
+        margin-right: 0px;
+        display: flex;
+        justify-content: right;
+        position: absolute;
+
+    }
+
+    #clientBtn {
+        position: relative;
+        margin-left: 3%;
+        width: 130px;
+        height: 130px;
+        margin-top: 10%;
+    }
+
+    #ressBtn {
+        margin-left: 33%;
+        margin-top: -17%;
+        width: 130px;
+        height: 130px;
+        position: absolute;
+    }
+
+    #msgBtn {
+        margin-left: 65%;
+        margin-top: -17%;
+        margin-bottom: 50px;
+        width: 130px;
+        height: 130px;
+        position: absolute;
+    }
+
+    #iconeAdmin {
+        width: 120px;
+        height: 120px;
+    }
+
+    .table-responsive {
+        font-size: 13px;
+        padding-bottom: 5%;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+        margin-bottom: -4%;
+        margin-top: 10%;
+    }
+
+    h4 {
+        font-size: 1.3rem;
+    }
+
+    label {
+        font-size: 14px;
+        width: 240px;
+        margin-bottom: .9rem;
+    }
+
+    .glow-on-hover {
+        width: 150px;
+        height: 40px;
+        font-size: 13px;
+    }
+
+    #save {
+        margin-left: 0;
+    }
+
+    #save2 {
+        margin-left: 30%;
+    }
+
+    .form-control {
+        font-size: 0.8rem;
+    }
+
+    .form-control-file {
+        font-size: 14px;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter label {
+        margin-left: 0px;
+        width: 350px; 
+    }
+
+    div.dataTables_wrapper div.dataTables_length label {
+        margin-left: 3%;
+    }
+
+    /*CONSULT COMPTES */
+
+    #returnCompte {
+        font-size: 40px;
+        float: left;
+        margin-left: 2%;
+        margin-top: -13%;
+    }
+
+    #h3Consult {
+        margin-bottom: 3%;
+    }
+
+    #tabEpargne {
+        margin-top: -5%;
+        margin-bottom: 5%;
+    }
+
+    #container2 {
+        left: 15%;
+    }
+
+    /*SADMIN*/
+
+    #btn-archAd {
+        float: left;
+        width: 230px;
+        height: 45px;
+        font-size: 15px;
+        margin-top: 0px;
+        margin-left: 12%;
+        margin-top: 7%;
+    }
+
+    #popAdmin {
+        margin-right: 0px;
+        margin-left: 53%;     
+    }
+
+    #btn-ajoutAdmin {
+        width: 230px;
+        height: 45px;
+        font-size: 15px;
+        margin-top: 10%;
+    }
+
+    #tableSadmin {
+        margin-top: 10%;
+    }
+
+    #h1Sadmin {
+        margin-top: 5%;
+    }
+
+    /* ARCHIVE ADMIN-CLIENT */
+
+    #return {
+        float: left;
+        font-size: 35px;
+        margin-top: -13%;
+    }
+
+    .h1Archive {
+        padding-top: 0;
+        margin-top: 6%;
+    }
+
+    #tableArchiveCl {
+        margin-top: 9%
+    }
+
+    /* CLIENT */
+
+    .mainClient {
+        margin-left: 0px !important;
+        margin-bottom: 0px !important;
+        margin-top: 3%;
+    }
+
+    .card-header  {
+        font-size: 18px;
+    }
+
+    .nav {
+        justify-content: space-evenly;
+        flex-wrap :nowrap;
+    }
+
+    .nav-tabs .nav-item {
+        width: 200px;
+    }
+
+    #updateClient, #updateMdpClient {
+        width: 500px;
+        margin-left: -30%;
+    }
+
+    #cardTache  {
+        margin-bottom: 10%;
+        width: 500px;
+        margin-left: -30%;
+    }
+
+    #btnVirement {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    #btnVirement2 {
+        margin-bottom: 4%;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter input {
+        width: 170px;
+    }
+
+    .card {
+        margin-bottom: 3%;
+    }
+     .card-text {
+         font-size: 18px;
+    }
+
+     .card-title {
+         font-size : 1.5rem;
+         margin-top: 5%;
+    }
+
+     #formClient {
+        width: 500px;
+        margin-left: -30%;
+    }
+
+     /* RESSOURCES */ 
+
+     #h1Cat {
+         font-size: 1.5rem;
+         padding-top: 10%;
+         padding-bottom: 10%;
+     }
+
+     #titleCat {
+         font-size: 16px;
+         float: left;
+         margin-left: 5%;
+     }
+
+     #action {
+         width: 27%;
+         margin-left: -30px;
+     }
+
+     #cats {
+         float: right;
+         margin-right: 5%;
+     }
+
+     #cardRessource {
+         margin-bottom: 20%;
+         padding-bottom: 10%;
+     }
+
+     #tableRess {
+         width: 650px;
+         margin-left: -22%;
+     }
+
+     .mainRessource {
+         margin-left: 0px !important;
+         margin-bottom: 0px !important;
+         margin-top: 3% !important;
+     }
+
+     /* CONTACT */
+
+     #formContact {
+         width: 600px;
+         margin-left: -40%;
+         margin-top: 20%;
+         font-size: 16px;
+     }
+
+     #formContact2 {
+         font-size: 16px;
+         margin-top: .9rem;
+     }
+
+     #story {
+        width: 450px;
+        height: 350px;
+        margin-left: -13%;
+     }
+
+     #cardContact {
+        margin-bottom: 20%;
+        padding-bottom: 10%;
+     }
+
+     .mainContact {
+        margin-left: 0px !important;
+        margin-bottom: 0 !important;
+        margin-top: 3% !important;
+     }
+
+     .custom-select {
+         font-size: 15px;
+         width: 300px;
+     }
+
+     #btn-contact {
+         margin-bottom: 5%;
+         margin-top: 5%;
+         width: 200px;
+         font-size: 14px;
+     }
+
+    
+
+
+}

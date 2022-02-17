@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Lien pour biblio Bootstrap -->
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css" type="text/css">
+    <!-- Lien pour biblio typo -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+    <!-- Lien pour biblio Datatable pour la pagination -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css"/>
+    <!-- Lien pour fichier css -->
+    <link rel="stylesheet" href="/css/styleadmin.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/menu.css">
+    <!--Lien pour fichier css MediaQueries-->
+    <link rel="stylesheet" href="/css/media.css">
+    <!-- Icone onglet-->
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/onglet.png">
+
+    <title> eida SMART</title>
+
+</head>
+
+<body>
+
+<!--Menu-->
+
+<nav class="topnav">
+    <img class="logo" id="logoNav" src="/images/eidaLogoVer2_2.png">
+    <a href="/logout" id="deco"><i class="fas fa-sign-out-alt"></i><p class="decoResponsive">Se déconnecter</p></a>
+</nav> 
+
+<div class="mainRessource" id="main">
+
+    <!--HEADER-->
+
+    <div class="card text-center" id="cardRessource">
+
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link"href="/client"><i class="fas fa-money-bill-wave"></i> Compte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled active" href="/client/ressource" tabindex="-1" aria-disabled="true"><i class="fas fa-book-reader"></i>Ressources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/client/contact"><i class="fas fa-users"></i>Contact</a>
+                </li>
+            </ul>
+        </div>
+
+        <h1 id="h1Cat"> Bienvenue dans l'espace Ressources</h1>
+
+        <div>
+            <form action="/selectcateg" method="post">
+                <label for="action" id="titleCat">Sélectionner une catégorie : </label>
+                <select name="cats" id="action">
+                    <option th:each="category: ${categs}"
+                            th:value="${category.id} "
+                            th:text="${category.title}">
+                    </option>
+    
+                </select>
+                <button type="submit" name="submit" value="submit" class="glow-on-hover" id="cats">valider </button>
+            </form>
+        </div>
+
+        <!--LISTE RESSOURCE-->
+        <div class="col-md-8 mx-auto">
+                
+            <div class="card container formulaire bg-ligth center-block" id="tableRess">
+                <div class="content">                       
+                    <div class="table-responsive">  
+                        <table id="example12" class="table table-striped" style="width:100%">
+
+                            <thead class="thead">
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Résumé</th>
+                                    <th>Type</th>
+                                    <th>Consulter</th>
+                                </tr>
+                            </thead>
+                        
+                            <tbody th:each="ressource : ${resources}">       
+                                
+                                <td th:text="${ressource.title}">['Title']</td>
+                                <td th:text="${ressource.description}">['Résumé']</td>
+                                <td th:text="${ressource.type}">['type']</td>
+
+                                <td th:if="${ressource.url} == ''" class="td-actions text-center">
+                                    <a th:href="${ressource.file}" target="_blank"><button type="button" id="update" class="glow-on-hover"><input th:value="${ressource.file}" hidden><i class="fas fa-folder-open"></i></button></a>
+                                </td>
+                                <td th:if="${ressource.url} != ''" class="td-actions text-center">
+                                    <a th:href="${ressource.url}" target="_blank"><button type="button" id="update" class="glow-on-hover"><input th:value="${ressource.url}" hidden><i class="fas fa-folder-open"></i></button></a>
+                                </td>
+
+                            </tbody>
+                        </table>
+                    </div>           
+                </div>
+            </div>
+         </div>
+    </div>
+</div>
+
+    <footer class="fixed-bottom">
+
+        <a href="https://www.eida.org/" target="_blank"><img src="/images/eidaLogo.png" alt="Logo originel de l'eida" title="Cliquez pour visiter le site de l'eida" id="logoO" ></a>
+        <a href="https://www.facebook.com/association.eida"><img src="/images/fbicone.png" alt="icone Facebook" id="fb" class="col-1 mb-3"></a>
+        <a href="https://twitter.com/eidaorg"><img src="/images/twicone.png" alt="icone Twitter" id="tw" class="col-1 mb-3"></a>
+        <a href="https://fr.linkedin.com/company/eida-adigo"><img src="/images/lkicone.png" alt="icone linkedin" id="lk" class="col-1 mb-3"></a>
+
+    </footer>
+
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/popper.js"></script>
+    <script src="/vendor/jquery/jquery-3.5.1.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/vendor/DataTables/datatables.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="/js/menu.js"></script>
+    <script src="/js/main.js"></script>
+  
+</body>
+
+</html>
